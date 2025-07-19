@@ -23,7 +23,7 @@ body.style-marker-gradient-top .background-effect-layer-grid {
 	background: linear-gradient(to bottom, var(--primary-color) 0%, transparent 50%);
 }
 body.style-marker-gradient-bottom .background-effect-layer-grid {
-	background: linear-gradient(to top, var(--primary-color) 0%, transparent 50%);
+	background: linear-gradient(to top, var(--primary-color) 0%, transparent 75%);
 }
 body.style-marker-gradient-vignette .background-effect-layer-grid {
 	background: radial-gradient(circle at center, transparent 50%, var(--primary-color) 81%);
@@ -42,8 +42,12 @@ body.style-marker-opaque .background-effect-layer-grid {
   );
 }
 /* Hide button background only if sticky form is visible */
-.section-wrapper.sticky-form:not(.w-condition-invisible) + .section-wrapper.button-box {
-  background-image: none !important;
+.section-wrapper.sticky-form:not(.w-condition-invisible) + .button-grid {
+	grid-template-rows: minmax(0, auto) auto auto auto;
+}
+
+.section-wrapper.sticky-form:not(.w-condition-invisible) + .background-image-layer-grid{
+	background-image: none !important;
 }
 
 /*  Show inline form image if Image Mode is set to Inline */

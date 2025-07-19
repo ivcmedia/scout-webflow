@@ -60,6 +60,10 @@ body.style-marker-opaque .background-effect-layer-grid {
 
 .section-wrapper.sticky-form:not(.w-condition-invisible) + .background-image-layer-grid{
 	background-image: none !important;
+	display: none !important;
+}
+.section-wrapper.sticky-form:not(.w-condition-invisible) + .background-effect-layer-grid{
+	display: none !important;
 }
 
 /*  Hide form background  Image Mode is set to Inline */

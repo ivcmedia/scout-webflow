@@ -41,8 +41,18 @@ body.style-marker-opaque .background-effect-layer-grid {
     color-mix(in srgb, var(--primary-color), transparent 50%)
   );
 }
+
+
+/*  Special Styles to Deal with BOTH the Form and Button are on the page */
+/*  Special Styles to Deal with BOTH the Form and Button are on the page */
+
+
+.section-wrapper.sticky-form:not(.w-condition-invisible) ~ .section-wrapper.button-box-grid .background-image-layer-grid {
+  background-image: none !important;
+}
+
 /* Hide button background only if sticky form is visible */
-.section-wrapper.sticky-form:not(.w-condition-invisible) + .button-grid {
+.section-wrapper.sticky-form:not(.w-condition-invisible) ~ .section-wrapper.button-box-grid .button grid {
 	grid-template-rows: minmax(0, auto) auto auto auto;
 }
 
@@ -50,19 +60,17 @@ body.style-marker-opaque .background-effect-layer-grid {
 	background-image: none !important;
 }
 
-/*  Show inline form image if Image Mode is set to Inline */
-body.image-position-inline .static-form-image-inline{
-	display: block;
-}
-
-.section-wrapper.sticky-form:not(.w-condition-invisible) ~ .section-wrapper.button-box-grid .background-image-layer-grid {
-  background-image: none !important;
-}
-
 /*  Hide form background  Image Mode is set to Inline */
 body.image-position-inline .background-image-layer-grid {
   background-image: none !important;
   background-color: color-mix(in srgb, var(--primary-color) 60%, black);
+}
+
+/*  END Special Styles to Deal with BOTH the Form and Button are on the page */
+/*  END Special Styles to Deal with BOTH the Form and Button are on the page */
+
+body.image-position-inline .static-form-image-inline{
+	display: block;
 }
 
 .rich-text-form ul {

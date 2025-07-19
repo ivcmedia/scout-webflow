@@ -53,7 +53,7 @@ body.style-marker-opaque .background-effect-layer-grid {
 
 /* Hide button background only if sticky form is visible */
 .section-wrapper.sticky-form:not(.w-condition-invisible) ~ .section-wrapper.button-box-grid .button-grid {
-	grid-template-rows: minmax(0, auto) auto auto auto;
+	grid-template-rows: minmax(0, auto) auto auto auto !important;
 }
 
 .section-wrapper.sticky-form:not(.w-condition-invisible) + .background-image-layer-grid{

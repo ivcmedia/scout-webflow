@@ -55,6 +55,10 @@ body.image-position-inline .static-form-image-inline{
 	display: block;
 }
 
+.section-wrapper.sticky-form:not(.w-condition-invisible) ~ .section-wrapper.button-box-grid .background-image-layer-grid {
+  background-image: none !important;
+}
+
 /*  Hide form background  Image Mode is set to Inline */
 body.image-position-inline .background-image-layer-grid {
   background-image: none !important;

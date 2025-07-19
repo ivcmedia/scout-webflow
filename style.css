@@ -22,14 +22,18 @@ body.style-marker-gradient-top .background-image-layer{
 body.style-marker-gradient-top .background-effect-layer-grid {
 	background: linear-gradient(to bottom, var(--primary-color) 0%, transparent 50%);
 }
-
+body.style-marker-gradient-bottom .background-effect-layer-grid {
+	background: linear-gradient(to top, var(--primary-color) 0%, transparent 50%);
+}
 body.style-marker-gradient-vignette .background-effect-layer-grid {
 	background: radial-gradient(circle at center, transparent 50%, var(--primary-color) 81%);
 }
 
-body.style-marker-gradient-bottom .background-effect-layer-grid {
+body.style-marker-gradient-radial-bottom .background-effect-layer-grid {
 	background: radial-gradient(circle at top, transparent 50%, var(--primary-color) 70%);
+	
 }
+
 body.style-marker-opaque .background-effect-layer-grid {
    background: linear-gradient(
     to bottom,

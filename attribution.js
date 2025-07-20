@@ -22,8 +22,8 @@ $(document).ready(function () {
 
   // Fire Facebook and Reddit pixels when any .button is clicked
   $('.button').click(function () {
-    fbq('track', 'Lead');
-    rdt('track', 'Lead');
+    fbq('track', 'Contact');
+    rdt('track', 'Click');
   });
 
   // Watch for successful native Webflow form submissions and fire pixels

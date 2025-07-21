@@ -93,11 +93,12 @@ body.image-position-inline .static-form-image-inline{
 }
 
 .rich-text-form ul li::before {
+	color:
   content: "";
   flex-shrink: 0;
   width: 50px;
   height: 50px;
-  background-color: var(--primary-color);
+  background-color: currentColor;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: contain;

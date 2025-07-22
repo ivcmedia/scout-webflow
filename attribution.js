@@ -22,6 +22,7 @@ $(document).ready(function () {
 
   // Fire Facebook and Reddit pixels when any .button is clicked
   $('.button').click(function () {
+    //fbq('track', 'Contact');
     fbq('track', 'Contact');
     rdt('track', 'ViewContent');
   });

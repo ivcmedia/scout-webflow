@@ -21,7 +21,7 @@ $(document).ready(function () {
   // 🔁 FIRE PIXELS ON INTERACTION
 
   // Fire Facebook and Reddit pixels when any .button is clicked
-  $('.button').click(function () {
+  $('[data-utm]').click(function () {
     //fbq('track', 'Contact');
     fbq('track', 'Lead');
     rdt('track', 'ViewContent');
@@ -79,7 +79,7 @@ $(document).ready(function () {
   // 🔗 UPDATE BUTTON LINKS WITH UTM TRACKING
 
   if (Object.keys(finalUTMs).length > 0) {
-    $('a.button').each(function () {
+    $('[data-utm]').each(function () {
       const originalHref = $(this).attr('href');
       if (!originalHref || originalHref.startsWith('#')) return;
       try {

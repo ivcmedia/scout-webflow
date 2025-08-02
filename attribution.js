@@ -18,21 +18,23 @@ rdt('init', 'a2_h0xpgl4gxp6t');
 rdt('track', 'PageVisit'); // Log page visit immediately
 
 $(document).ready(function () {
-  // 🔁 FIRE PIXELS ON INTERACTION
+  console.log("✅ DOM Ready");
 
-  // Fire Facebook and Reddit pixels when any .button is clicked
+  // 🔁 FIRE PIXELS ON INTERACTION
   $('[data-utm]').click(function () {
-    //fbq('track', 'Contact');
+    console.log("📦 Clicked UTM-tracked element:", this);
     fbq('track', 'Lead');
     rdt('track', 'ViewContent');
   });
 
-  // Watch for successful native Webflow form submissions and fire pixels
+  // ✅ Monitor Webflow form submissions
   $('form[facebook_pixel="true"]').each(function () {
     const $form = $(this);
+    console.log("📝 Watching form for Facebook pixel:", $form);
     $form.on('submit', function () {
       const checkSuccess = setInterval(() => {
         if ($form.siblings('.w-form-done').is(':visible')) {
+          console.log("🎯 Form submitted successfully");
           fbq('track', 'Lead');
           rdt('track', 'Lead');
           clearInterval(checkSuccess);
@@ -42,22 +44,19 @@ $(document).ready(function () {
   });
 
   // 🎯 UTM PARAMETER LOGIC
-
-  // Capture UTM parameters from URL and store them in cookies
   function getUTMParams() {
     const params = new URLSearchParams(window.location.search);
     const utms = {};
     for (const [key, value] of params.entries()) {
       if (key.startsWith('utm_')) {
         utms[key] = value;
-        // Store in cookie for up to 7 days
         document.cookie = `${key}=${value}; path=/; max-age=${60 * 60 * 24 * 7}`;
       }
     }
+    console.log("🔍 UTMs from URL:", utms);
     return utms;
   }
 
-  // Retrieve UTM values from cookies
   function getUTMsFromCookies() {
     const cookies = document.cookie.split('; ');
     const utms = {};
@@ -67,37 +66,42 @@ $(document).ready(function () {
         utms[key] = value;
       }
     });
+    console.log("🍪 UTMs from cookies:", utms);
     return utms;
   }
 
-  // Combine cookie-stored UTMs with those from the current URL
-  const urlUTMs = getUTMParams(); // Updates cookies if present in URL
+  const urlUTMs = getUTMParams();
   const cookieUTMs = getUTMsFromCookies();
-  const finalUTMs = { ...cookieUTMs, ...urlUTMs }; // Prefer URL if available
+  const finalUTMs = { ...cookieUTMs, ...urlUTMs };
   const utmString = new URLSearchParams(finalUTMs).toString();
 
-  // 🔗 UPDATE BUTTON LINKS WITH UTM TRACKING
+  console.log("🧠 Final merged UTMs:", finalUTMs);
+  console.log("🔗 Final UTM query string:", utmString);
 
+  // 🔗 UPDATE BUTTON LINKS WITH UTM TRACKING
   if (Object.keys(finalUTMs).length > 0) {
     $('[data-utm]').each(function () {
       const originalHref = $(this).attr('href');
+      console.log("🔗 Processing element:", this.tagName, originalHref);
+
       if (!originalHref || originalHref.startsWith('#')) return;
+
       try {
         const url = new URL(originalHref, window.location.origin);
         const params = new URLSearchParams(url.search);
 
-        // Remove existing UTM params
         for (const key of [...params.keys()]) {
           if (key.startsWith('utm_')) params.delete(key);
         }
 
-        // Add final UTM set
         for (const key in finalUTMs) {
           params.set(key, finalUTMs[key]);
         }
 
         url.search = params.toString();
         $(this).attr('href', url.toString());
+
+        console.log("✅ Updated href with UTMs:", url.toString());
       } catch (e) {
         console.warn('⚠️ Invalid link skipped for UTM update:', originalHref);
       }
@@ -105,7 +109,6 @@ $(document).ready(function () {
   }
 
   // 🧠 INJECT UTM PARAMS INTO JOTFORM IFRAME
-
   if (utmString) {
     $("iframe[src^='https://form.jotform.com/']").each(function () {
       const $iframe = $(this);
@@ -113,14 +116,12 @@ $(document).ready(function () {
       const url = new URL(originalSrc, window.location.origin);
       const params = new URLSearchParams(url.search);
 
-      // Remove existing UTM params from the iframe URL
       for (const key of [...params.keys()]) {
         if (key.startsWith('utm_')) {
           params.delete(key);
         }
       }
 
-      // Add fresh UTMs
       for (const key in finalUTMs) {
         params.set(key, finalUTMs[key]);
       }

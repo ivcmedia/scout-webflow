@@ -80,19 +80,19 @@ body.image-position-inline .static-form-image-inline{
 	display: block;
 }
 
-.rich-text-form ul {
+.rich-text.form ul {
 	list-style-type: none;
   padding-left: 0px;
 }
 
-.rich-text-form ul li {
+.rich-text.form ul li {
 	display: flex;
   align-items: center; 
   gap: 0.75rem;       
   margin-bottom: 1rem;
 }
 
-.rich-text-form ul li::before {
+.rich-text.form ul li::before {
   content: "";
   flex-shrink: 0;
   width: 50px;

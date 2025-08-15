@@ -1,21 +1,3 @@
-// Initialize Reddit Pixel
-!function(w,d){
-  if(!w.rdt){
-    var p=w.rdt=function(){
-      p.sendEvent ? p.sendEvent.apply(p,arguments) : p.callQueue.push(arguments);
-    };
-    p.callQueue = [];
-    var t = d.createElement("script");
-    t.src = "https://www.redditstatic.com/ads/pixel.js";
-    t.async = true;
-    var s = d.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(t,s);
-  }
-}(window,document);
-
-// Start Reddit pixel with your pixel ID
-rdt('init', 'a2_h0xpgl4gxp6t');
-rdt('track', 'PageVisit'); // Log page visit immediately
 
 $(document).ready(function () {
   console.log("✅ DOM Ready");
@@ -24,7 +6,7 @@ $(document).ready(function () {
   $('[data-utm]').click(function () {
     console.log("📦 Clicked UTM-tracked element:", this);
     fbq('track', 'Lead');
-    rdt('track', 'ViewContent');
+    
   });
 
   // ✅ Monitor Webflow form submissions
@@ -36,7 +18,6 @@ $(document).ready(function () {
         if ($form.siblings('.w-form-done').is(':visible')) {
           console.log("🎯 Form submitted successfully");
           fbq('track', 'Lead');
-          rdt('track', 'Lead');
           clearInterval(checkSuccess);
         }
       }, 100);
@@ -127,7 +108,7 @@ $(document).ready(function () {
       }
 
       url.search = params.toString();
-      $iframe.attr("src", url.toString());
+      $iframe.attr("src", url.toStrirng());
 
       console.log("✅ Updated JotForm iframe src:", url.toString());
     });
